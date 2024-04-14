@@ -1,0 +1,17 @@
+{
+  "name": "tg-daily",
+  "version": "1.0.0",
+  "description": "Telegram Daily Lezama lima Poems",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "telegram"
+  ],
+  "author": "heroprotagonist32",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^6.5.0"
+  }
+}
