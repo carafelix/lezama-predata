@@ -1,8 +1,8 @@
 const fs = require('fs')
 const path = require('path')
-const base = path.dirname(__dirname)
-
+const base = path.dirname(path.dirname(__dirname))
 const dadorIntro = fs.readFileSync(path.join(base,'assets','fix','dadorintro.txt'),{encoding: 'utf-8'}).replace(/\d/g,'split')
+const poemsCleaned = require(path.join(base,'assets','poems_arr.json'));
 
 const txtFolder = path.join(base,'assets','txt')
 const txtPaths = fs.readdirSync(txtFolder)
@@ -72,13 +72,20 @@ const dadorIntroSplitted = dadorIntro.split('splitsplitsplit').map((v,i)=>{
 
 filtered.splice(14,0, ...dadorIntroSplitted)
 
-const result = {}
-
-filtered.forEach((v,i)=>{
-    result[i] = v
+const result = filtered.map((v,i)=>{
+    return {
+        id: i,
+        book: v.book,
+        title: v.title,
+        text: v.text
+    }
 })
 
-// fs.writeFileSync('./poems.json',JSON.stringify(result))
+// poemsCleaned.forEach((v,i)=>{
+//     result[i] = Object.assign({id:i},v)
+// })
+
+fs.writeFileSync('./poems.json',JSON.stringify(result))
 
 function isRoman(str) {
     const romanNums = {
